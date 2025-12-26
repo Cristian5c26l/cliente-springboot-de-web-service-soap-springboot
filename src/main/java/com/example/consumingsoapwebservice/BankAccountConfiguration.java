@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 @Configuration
-public class CalculatorConfiguration {
+public class BankAccountConfiguration {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
@@ -16,12 +16,12 @@ public class CalculatorConfiguration {
     }
 
     @Bean
-    public CalculatorClient countryClient(WebServiceTemplateBuilder builder, Jaxb2Marshaller marshaller) {
+    public BankAccountClient countryClient(WebServiceTemplateBuilder builder, Jaxb2Marshaller marshaller) {
         builder = builder.setMarshaller(marshaller).setUnmarshaller(marshaller);
 
-        CalculatorClient client = new CalculatorClient();
+        BankAccountClient client = new BankAccountClient();
         client.setWebServiceTemplate(builder.build());
-        client.setDefaultUri("http://localhost:8080/ws");
+        client.setDefaultUri("http://localhost:8080/services");
         return client;
     }
 

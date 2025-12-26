@@ -77,7 +77,7 @@
                 <configuration>
                     <packageName>com.example.consumingsoapwebservice.wsdl</packageName>
                     <wsdlUrls>
-                        <wsdlUrl>http://localhost:8080/ws/calculator.wsdl</wsdlUrl>
+                        <wsdlUrl>http://localhost:8080/services/bankAccounts.wsdl</wsdlUrl>
                     </wsdlUrls>
                     <sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
                     <destDir>${project.build.directory}/classes</destDir>

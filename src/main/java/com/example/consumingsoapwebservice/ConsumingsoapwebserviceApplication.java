@@ -1,6 +1,6 @@
 package com.example.consumingsoapwebservice;
 
-import com.example.consumingsoapwebservice.wsdl.PlusResponse;
+import com.example.consumingsoapwebservice.wsdl.GetBankAccountResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -20,17 +20,15 @@ public class ConsumingsoapwebserviceApplication {
     }
 
     @Bean
-    ApplicationRunner lookup(CalculatorClient client) {
+    ApplicationRunner lookup(BankAccountClient client) {
         return args -> {
 
-            List<String> numberA = args.getOptionValues("numberA");
-            List<String> numberB = args.getOptionValues("numberB");
+            List<String> accountNumberOption = args.getOptionValues("accountNumber");
 
-            Integer numA = numberA == null || numberA.isEmpty() ? 3 : Integer.parseInt( numberA.getFirst() );
-            Integer numB = numberB == null || numberB.isEmpty() ? 10 : Integer.parseInt( numberB.getFirst() );
+            String accountNumber = accountNumberOption == null || accountNumberOption.isEmpty() ? "MX-001" : accountNumberOption.getFirst();
 
-            PlusResponse response = client.getPlus(numA, numB);
-            logger.info("Response (plus result): " + response.getResult());
+            GetBankAccountResponse response = client.getBankAccount(accountNumber);
+            logger.info("[+] Response (BankAccount)\n\n [*] Account Holder: {}\n[*] Account Balance: {}\n\n", response.getBankAccount().getAccountHolder(), response.getBankAccount().getBalance());
         };
     }
 }
